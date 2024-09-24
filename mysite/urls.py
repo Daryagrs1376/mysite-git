@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
+from blog import views as blog_views  # اضافه کردن ویو‌های blog
 
 sitemaps = {
     'posts': PostSitemap,
@@ -25,6 +26,8 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap')
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    
+    # اضافه کردن مسیر صفحه اصلی (مثلاً به یک ویو از blog)
+    path('', blog_views.index, name='home'),  # مسیر خالی به عنوان صفحه اصلی
 ]
