@@ -25,7 +25,8 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls', namespace='blog')),
+    path('', blog_views.post_list, name='home')
+    # path('blog/', include('blog.urls', namespace='blog')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     
     # اضافه کردن مسیر صفحه اصلی (مثلاً به یک ویو از blog)
